@@ -1,12 +1,12 @@
 DIALECT = 'mysql'
 DRIVER = 'pymysql'
-USERNAME = 'root'
-PASSWORD = '123456'
-HOST = '127.0.0.1'
+USERNAME = 'admin'
+PASSWORD = 'mypassword'
+HOST = 'database-1.cvuxzz0ptumh.us-east-1.rds.amazonaws.com'
 PORT = '3306'
-DATABASE = 'test'
+DATABASE = 'Flask'
 
-# mysql 不会认识utf-8,而需要直接写成utf8
+# mysql URI
 SQLALCHEMY_DATABASE_URI = "{}+{}://{}:{}@{}:{}/{}?charset=utf8".format(DIALECT, DRIVER, USERNAME, PASSWORD, HOST, PORT,
                                                                        DATABASE)
 SQLALCHEMY_TRACK_MODIFICATIONS = False
