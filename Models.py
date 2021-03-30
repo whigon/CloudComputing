@@ -1,5 +1,7 @@
 from flask import jsonify
 import matplotlib.pyplot as plt
+from matplotlib import ticker
+
 from __init__ import db
 
 
@@ -45,7 +47,6 @@ class Data(db.Model):
     """
     __tablename__ = 'data'
     date = db.Column(db.Date, primary_key=True)
-    # city = db.Column(db.String(80), nullable=False)
     cases = db.Column(db.Integer, nullable=False)
     death = db.Column(db.Integer, nullable=False)
 
@@ -58,9 +59,7 @@ class Data(db.Model):
     def query_data(date=None):
         """
         Query data from database
-        If date is none, return all data, else return the specific date
-        :param date:
-        :return:
+        If date is none, return all data, else return data in the specific date
         """
         if date:
             result = Data.query.get(date)
@@ -87,7 +86,7 @@ class Data(db.Model):
                 data.append(new_record)
 
             if len(data) == 0:
-                return jsonify({"Error": "Data not found"}), 404
+                return jsonify({"Error": "Data not found!"}), 404
             else:
                 return jsonify(data), 200
 
@@ -95,7 +94,6 @@ class Data(db.Model):
     def create_picture():
         """
         Create the picture to show the trend of cases and death
-        :return:
         """
         result = Data.query.all()
 
@@ -109,17 +107,30 @@ class Data(db.Model):
 
         pic_path = 'daily_report_{}.png'.format(date[-1])
 
-        # fig = plt.figure(figsize=(10, 8))
-        plt.xticks(rotation=90)
-        l1 = plt.plot(date, cases, 'ro-', label='cases')
-        l2 = plt.plot(date, death, 'g+-', label='death')
+        fig = plt.figure(figsize=(100, 50))
 
-        plt.plot(date, cases, 'ro-')
-        plt.plot(date, death, 'g+-')
-        plt.title('Covid-19 daily report')
-        plt.xlabel('date')
-        plt.legend()
+        ax1 = fig.add_subplot(111)
+        ax1.set_title("Covid-19 Daily Report", fontsize=70)
+        ax1.set_ylabel('Cases', fontsize=40)
+
+        plt.xticks(rotation=270, fontsize=40)
+        plt.yticks(fontsize=50)
+        plot1 = ax1.plot(date, cases, '-*', color='r', label='cases')
+
+        ax2 = ax1.twinx()  # this is the important function
+
+        plot2 = ax2.plot(date, death, '-o', color='g', label='death')
+        lines = plot1 + plot2
+
+        ax2.set_ylabel('Death', fontsize=40)
+        ax2.set_xlabel('Date', fontsize=70)
+        ax2.tick_params(axis='y', labelsize=50)
+
+        plt.gca().xaxis.set_major_locator(ticker.MultipleLocator(12))
+        ax1.legend(lines, [l.get_label() for l in lines], fontsize=50)
+
         plt.savefig(pic_path)
+
         return pic_path
 
     def __repr__(self):

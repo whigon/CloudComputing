@@ -13,9 +13,6 @@ admin_auth = HTTPBasicAuth()
 def verify_password(username, password):
     """
     Verify the admin password
-    :param username:
-    :param password:
-    :return:
     """
     if username:
         admin = Admin.query.get(username)
@@ -29,8 +26,8 @@ def verify_password(username, password):
 @admin_auth.login_required
 def query_user():
     """
-    Query all username and email
-    :return:
+    Query all users' info
+    Return username and email
     """
     result = User.query.all()
 
@@ -48,9 +45,6 @@ def query_user():
 def delete_user(username):
     """
     Delete the specific user from database
-
-    :param username:
-    :return:
     """
     user = User.query.get(username)
     if user is None:
@@ -70,7 +64,6 @@ def delete_user(username):
 def query():
     """
     Query all data
-    :return:
     """
     return Data.query_data()
 
@@ -79,9 +72,7 @@ def query():
 @admin_auth.login_required
 def query_by_date(date):
     """
-    Query data by date
-    :param date:
-    :return:
+    Query the data by date
     """
     return Data.query_data(date)
 
@@ -92,7 +83,6 @@ def add_data():
     """
     Add new data into database
     The default cases and death will be 0
-    :return:
     """
     postForm = json.loads(request.get_data(as_text=True))
 
@@ -124,9 +114,7 @@ def add_data():
 @admin_auth.login_required
 def modify_data(date):
     """
-    Update the data or delete data
-    :param date:
-    :return:
+    Update the data or delete the data
     """
     if request.method == 'PUT':
         data = Data.query.get(date)
@@ -161,12 +149,11 @@ def modify_data(date):
 def get_daily_report():
     """
     Send an email with a picture that contains a trend of cases and death
-    :return:
     """
     admin = Admin.query.get(admin_auth.current_user())
     path = Data.create_picture()
     text = 'Hi {}, this is the latest daily report.'.format(admin.username)
-
+    # Invoke email service
     is_successful, message = email_service.send_image(admin.email, 'Daily report', text, path)
     if is_successful:
         return jsonify({"Info": "Success"}), 200
