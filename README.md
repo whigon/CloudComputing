@@ -31,7 +31,7 @@ _hostname:port/api/admin/user_query_: Login required. Obtaining all users' usern
 
 _hostname:port/api/admin/query_: Login required. Obtain all Covid-19 data.
 
-_hostname:port/api/admin/query/<date>_: Login required. Obtain the Covid-19 data in the specific date.
+_hostname:port/api/admin/query/\<date\>_: Login required. Obtain the Covid-19 data in the specific date.
 
 _hostname:port/api/admin/get_daily_report_: Login required. Obtain a picture that contains a trend of cases and death. The
 picture will be sent by email.
@@ -43,13 +43,13 @@ _hostname:port/api/admin/add_: Login required. Add new data into database.
 
 PUT method:
 
-_hostname:port/api/admin/data/<date>_: Login required. Modify the data in the specific date.
+_hostname:port/api/admin/data/\<date\>_: Login required. Modify the data in the specific date.
 
 DELETE methods:
 
-_hostname:port/api/admin/data/<date>_: Login required. Delete the data in the specific date.
+_hostname:port/api/admin/data/\<date\>_: Login required. Delete the data in the specific date.
 
-_hostname:port/api/admin/delete_user/<username>_: Login required. Delete the specific user from the database.
+_hostname:port/api/admin/delete_user/\<username\>_: Login required. Delete the specific user from the database.
 
 
 
@@ -58,7 +58,7 @@ GET methods:
 
 _hostname:port/api/user/query_: Login required. Obtain all Covid-19 data.
 
-_hostname:port/api/user/query/<date>_: Login required. Obtain the Covid-19 data in the specific date.
+_hostname:port/api/user/query/\<date\>_: Login required. Obtain the Covid-19 data in the specific date.
 
 _hostname:port/api/user/get_daily_report_: Login required. Obtain a picture that contains a trend of cases and death. The
 picture will be sent by email.
