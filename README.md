@@ -7,6 +7,7 @@ This project develops APIs for accessing UK Covid-19 information.
 We use **Gmail API** as the external REST service to povide email service function. 
 Before starting this project, you need to enable Gmail API of your account and download the **_credentials.json_** into 
 the same directory as the **EmailService.py** file. And then run the **EmailService.py** or **app.py** to authorize access to your data.
+After that, a **_token.pickle_** file will be created in the work directory.
 See more at: https://developers.google.com/gmail/api/quickstart/python
 
 We use Amazon Relational Database Service (Amazon RDS) for MySQL as our cloud database for accessing persistent information.
