@@ -67,3 +67,7 @@ POST method:
 
 _hostname:port/api/user/new_user_: No need to login. Create a new user by given details. The request must contain the username,
 password and email address.
+
+# Example
+The GET request with a proper authentication to http://965793c51169.ngrok.io/api/admin/query/2020-03-30 or http://127.0.0.1:5000/api/admin/query/2020-03-30 will return:
+>{"cases":4263,"date":"Mon, 30 Mar 2020 00:00:00 GMT","death":590}
