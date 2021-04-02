@@ -1,0 +1,9 @@
+flask
+flask_httpauth
+passlib
+matplotlib
+flask_sqlalchemy
+pymysql
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
