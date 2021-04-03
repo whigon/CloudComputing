@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, json, request, abort
+from flask import Blueprint, jsonify, json, request
 from Models import User, Data
 from passlib.apps import custom_app_context as pwd_context
 from __init__ import email_service, db
