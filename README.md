@@ -75,7 +75,7 @@ password and email address.
 There is an admin account with the username `admin` and password `admin` in the database.
 And the application is recently deployed on AWS with the hostname: `ec2-3-235-186-61.compute-1.amazonaws.com`
 
-Send a GET request with a proper authentication to http://ec2-54-90-35-143.compute-1.amazonaws.com/api/admin/query/2020-03-30 will return:
+Send a GET request with a proper authentication to http://ec2-3-235-186-61.compute-1.amazonaws.com/api/admin/query/2020-03-30 will return:
 >{"cases":4263,"date":"Mon, 30 Mar 2020 00:00:00 GMT","death":590}
 
 And you can send a POST request to http://ec2-3-235-186-61.compute-1.amazonaws.com/api/user/new_user to create a new user, which
