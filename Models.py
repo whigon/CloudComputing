@@ -130,7 +130,9 @@ class Data(db.Model):
         ax1.legend(lines, [l.get_label() for l in lines], fontsize=50)
 
         plt.savefig(pic_path)
-
+        plt.cla()
+        plt.clf()
+        plt.close()
         return pic_path
 
     def __repr__(self):
